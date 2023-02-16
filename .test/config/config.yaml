@@ -30,7 +30,7 @@ pca:
 heatmap:
   activate: True
   labels:
-    # columns of sample sheet to use for PCA
+    # columns of sample sheet to use for Heatmap
     - condition
 
 diffexp:
