@@ -27,6 +27,12 @@ pca:
     # columns of sample sheet to use for PCA
     - condition
 
+heatmap:
+  activate: True
+  labels:
+    # columns of sample sheet to use for PCA
+    - condition
+
 diffexp:
   # contrasts for the deseq2 results method
   contrasts:

@@ -64,6 +64,20 @@ rule pca:
     script:
         "../scripts/plot-pca.R"
 
+rule heatmap:
+    input:
+        "results/deseq2/all.rds",
+    output:
+        report("results/heatmap.svg", "../report/heatmap.rst"),
+    params:
+        heatmap_labels=config["heatmap"]["labels"],
+    conda:
+        "../envs/deseq2.yaml"
+    log:
+        "logs/heatmap.log",
+    script:
+        "../scripts/plot-heatmap.R"
+
 
 rule deseq2:
     input:

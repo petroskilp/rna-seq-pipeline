@@ -44,6 +44,18 @@ properties:
     required:
       - labels
       - activate
+  heatmap:
+    type: object
+    properties:
+      activate:
+       type: boolean
+      labels:
+        type: array
+        items:
+          type: string
+    required:
+      - labels
+      - activate
 
   diffexp:
     type: object
