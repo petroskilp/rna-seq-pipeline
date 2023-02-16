@@ -38,3 +38,4 @@ rule all:
         get_final_output(),
         "results/qc/multiqc_report.html",
         "results/pca.svg",
+        "results/heatmap.svg",
