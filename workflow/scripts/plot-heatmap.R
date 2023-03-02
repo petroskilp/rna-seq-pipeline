@@ -10,7 +10,7 @@ dds <- readRDS(snakemake@input[[1]])
 
 select <- order(rowMeans(counts(dds,normalized=TRUE)),
                 decreasing=TRUE)[1:20]
-df <- as.data.frame(colData(dds)[,c(snakemake@params[["heatmap_labels"]])])
+df <- as.data.frame(colData(dds)[c(snakemake@params[["heatmap_labels"]])])
 ntd <- normTransform(dds)
 rownames(df) <- colnames(assay(ntd)[select,])
 svg(snakemake@output[[1]])
