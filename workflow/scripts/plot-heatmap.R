@@ -14,6 +14,6 @@ df <- as.data.frame(colData(dds)[c(snakemake@params[["heatmap_labels"]])])
 ntd <- normTransform(dds)
 rownames(df) <- colnames(assay(ntd)[select,])
 svg(snakemake@output[[1]])
-pheatmap(assay(ntd)[select,], cluster_rows=TRUE, show_rownames=FALSE,
+pheatmap(assay(ntd)[select,], cluster_rows=TRUE, show_rownames=TRUE,
          cluster_cols=TRUE, annotation_col=df)
 dev.off()
