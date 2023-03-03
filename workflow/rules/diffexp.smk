@@ -87,6 +87,8 @@ rule deseq2:
         ma_plot=report("results/diffexp/{contrast}.ma-plot.svg", "../report/ma.rst"),
     params:
         contrast=get_contrast,
+        samples=config["samples"],
+        model=config["diffexp"]["model"],
     conda:
         "../envs/deseq2.yaml"
     log:
