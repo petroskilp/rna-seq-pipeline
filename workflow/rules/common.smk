@@ -18,9 +18,12 @@ samples = (
 def get_final_output():
     final_output = expand(
         "results/diffexp/{contrast}.diffexp.symbol.tsv",
-        "results/diffexp/{contrast}.expressiontable.tsv",
         contrast=config["diffexp"]["contrasts"],
     )
+    final_output.append(expand(
+        "results/diffexp/{contrast}.expressiontable.symbol.tsv",
+        contrast=config["diffexp"]["contrasts"],
+    ))
     final_output.append("results/deseq2/normcounts.symbol.tsv")
     final_output.append("results/counts/all.symbol.tsv")
     return final_output
