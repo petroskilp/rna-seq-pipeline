@@ -39,3 +39,4 @@ rule all:
         "results/qc/multiqc_report.html",
         "results/pca.svg",
         "results/heatmap.svg",
+        "results/volcanoplot.svg",

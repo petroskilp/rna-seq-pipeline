@@ -78,6 +78,20 @@ rule heatmap:
     script:
         "../scripts/plot-heatmap.R"
 
+rule volcano:
+    input:
+        "results/deseq2/all.rds",
+    output:
+        report("results/volcanoplot.svg", "../report/volcanoplot.rst"),
+    params:
+        heatmap_labels=config["heatmap"]["labels"],
+    conda:
+        "../envs/deseq2.yaml"
+    log:
+        "logs/volcanoplot.log",
+    script:
+        "../scripts/plot-volcano.R"
+
 
 rule deseq2:
     input:
