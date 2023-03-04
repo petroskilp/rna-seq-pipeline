@@ -47,12 +47,12 @@ abline(v=c(-1,1), col="brown")
 abline(h=-log10(alpha), col="brown")
 
 ## Plot the names of a reasonable number of genes, by selecting those begin not only significant but also having a strong effect size
-gn.selected <- abs(res$log2FoldChange) > 2 & res$padj < alpha 
-if(length(res$log2FoldChange[gn.selected])>0){
-     text(res$log2FoldChange[gn.selected],
-     -log10(res$padj)[gn.selected],
-     lab=rownames(res)[gn.selected ], cex=0.6)
-}
+#gn.selected <- abs(res$log2FoldChange) > 2 & res$padj < alpha 
+#if(length(res$log2FoldChange[gn.selected])>0){
+#     text(res$log2FoldChange[gn.selected],
+#     -log10(res$padj)[gn.selected],
+#     lab=rownames(res)[gn.selected ], cex=0.6)
+#}
 
 
 dev.off()
