@@ -47,4 +47,5 @@ svg(snakemake@output[["ma_plot"]])
 plotMA(res, ylim=c(-2,2))
 dev.off()
 
-write.table(data.frame("gene"=rownames(res_tidy),res_tidy), file=snakemake@output[["table"]], row.names=FALSE, sep='\t')
+colnames(res_tidy)[1] = "gene"
+write.table(res_tidy, file=snakemake@output[["table"]], row.names=FALSE, sep='\t')
