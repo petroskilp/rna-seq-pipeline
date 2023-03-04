@@ -110,3 +110,20 @@ rule deseq2:
     threads: get_deseq2_threads
     script:
         "../scripts/deseq2.R"
+
+rule deseq2-expressiontable:
+    input:
+        "results/deseq2/all.rds",
+    output:
+        table=report("results/diffexp/{contrast}.expressiontable.tsv", "../report/expressiontable.rst"),
+    params:
+        contrast=get_contrast,
+        samples=config["samples"],
+        model=config["diffexp"]["model"],
+    conda:
+        "../envs/deseq2.yaml"
+    log:
+        "logs/deseq2/{contrast}.expressiontable.log",
+    threads: get_deseq2_threads
+    script:
+        "../scripts/deseq2.R"
