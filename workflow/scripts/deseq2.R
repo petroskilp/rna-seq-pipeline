@@ -28,7 +28,7 @@ for (i in unique(coldata[[condition]]))
     mean <- cbind(rownames(mean), mean)
     rownames(mean) <- NULL
     colnames(mean) <- c("row", paste("baseMean_", i, sep=""))
-    res<-merge(res, mean)
+    #res<-merge(res, mean)
 }
 # shrink fold changes for lowly expressed genes
 # use ashr so we can use `contrast` as conversion to coef is not trivial
