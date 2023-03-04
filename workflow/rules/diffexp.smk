@@ -111,7 +111,8 @@ rule deseq2:
     script:
         "../scripts/deseq2.R"
 
-rule deseq2_expressiontable:
+
+rule deseq2_exptable:
     input:
         "results/deseq2/all.rds",
     output:
