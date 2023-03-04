@@ -18,14 +18,14 @@ contrast <- c("condition", snakemake@params[["contrast"]])
 norm_counts = counts(dds, normalized=T)
 res <- results(dds, contrast=contrast, parallel=parallel)
 
-coldata <- read.table(snakemake@params[["samples"]], header=TRUE, row.names="sample_name", check.names=FALSE)
+coldata <- read.table(snakemake@params[["samples"]], header=TRUE, check.names=FALSE)
 coldata <- coldata[order(row.names(coldata)), , drop=F]
 condition <- snakemake@params[["model"]]
 condition <- sub("~", "", condition)
 res_tidy <- results(dds, tidy = TRUE)
 for (i in unique(coldata[[condition]]))
 {
-    mean <- data.frame(mean=rowMeans(norm_counts[,c(rownames(coldata[coldata[[condition]]==i,]))]))
+    mean <- data.frame(mean=rowMeans(norm_counts[,c(coldata[coldata[[condition]]==i,]$sample_name)]))
     mean <- cbind(rownames(mean), mean)
     rownames(mean) <- NULL
     colnames(mean) <- c("row", paste("baseMean_", i, sep=""))
