@@ -21,13 +21,13 @@ res <- results(dds, contrast=contrast, parallel=parallel)
 coldata <- read.table(snakemake@params[["samples"]], header=TRUE, row.names="sample_name", check.names=FALSE)
 coldata <- coldata[order(row.names(coldata)), , drop=F]
 condition <- snakemake@params[["model"]]
-condition <- sub('~', '', condition)
+condition <- sub("~", "", condition)
 for (i in unique(coldata[[condition]]))
 {
-    mean <- data.frame(mean=rowMeans(norm_counts[,c(metadata[coldata[condition]==i,]$sample_name)]))
+    mean <- data.frame(mean=rowMeans(norm_counts[,c(coldata[coldata[condition]==i,]$sample_name)]))
     mean <- cbind(rownames(mean), mean)
     rownames(mean) <- NULL
-    colnames(mean)<-c('row', paste("baseMean_", i, sep=""))
+    colnames(mean) <- c("row", paste("baseMean_", i, sep=""))
     res<-merge(res, mean)
 }
 # shrink fold changes for lowly expressed genes
