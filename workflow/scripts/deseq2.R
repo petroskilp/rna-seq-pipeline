@@ -22,13 +22,14 @@ coldata <- read.table(snakemake@params[["samples"]], header=TRUE, row.names="sam
 coldata <- coldata[order(row.names(coldata)), , drop=F]
 condition <- snakemake@params[["model"]]
 condition <- sub("~", "", condition)
+res_tidy <- results(dds, tidy = TRUE)
 for (i in unique(coldata[[condition]]))
 {
     mean <- data.frame(mean=rowMeans(norm_counts[,c(rownames(coldata[coldata[[condition]]==i,]))]))
     mean <- cbind(rownames(mean), mean)
     rownames(mean) <- NULL
     colnames(mean) <- c("row", paste("baseMean_", i, sep=""))
-    #res<-merge(res, mean)
+    res_tidy<-merge(res_tidy, mean)
 }
 # shrink fold changes for lowly expressed genes
 # use ashr so we can use `contrast` as conversion to coef is not trivial
@@ -37,6 +38,7 @@ res <- lfcShrink(dds, contrast=contrast, res=res, type="ashr")
 
 # sort by p-value
 res <- res[order(res$padj),]
+res_tidy <- res_tidy[order(res_tidy$padj),]
 # TODO explore IHW usage
 
 
@@ -45,4 +47,4 @@ svg(snakemake@output[["ma_plot"]])
 plotMA(res, ylim=c(-2,2))
 dev.off()
 
-write.table(data.frame("gene"=rownames(res),res), file=snakemake@output[["table"]], row.names=FALSE, sep='\t')
+write.table(data.frame("gene"=rownames(res_tidy),res_tidy), file=snakemake@output[["table"]], row.names=FALSE, sep='\t')
