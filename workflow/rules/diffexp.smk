@@ -127,4 +127,4 @@ rule deseq2_exptable:
         "logs/deseq2/{contrast}.expressiontable.log",
     threads: get_deseq2_threads
     script:
-        "../scripts/deseq2.R"
+        "../scripts/deseq2-exptable.R"
