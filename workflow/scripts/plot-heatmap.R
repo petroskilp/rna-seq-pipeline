@@ -15,5 +15,5 @@ ntd <- normTransform(dds)
 rownames(df) <- colnames(assay(ntd)[select,])
 svg(snakemake@output[[1]])
 pheatmap(assay(ntd)[select,], cluster_rows=TRUE, show_rownames=TRUE,
-         cluster_cols=TRUE, annotation_col=df)
+         cluster_cols=FALSE, annotation_col=df)
 dev.off()
