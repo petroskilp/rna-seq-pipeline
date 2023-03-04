@@ -6,3 +6,4 @@ dependencies:
   - bioconductor-deseq2 =1.38
   - r-ashr =2.2_54
   - r-pheatmap =1.0.12
+  - r-KernSmooth =2.23-20
