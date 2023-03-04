@@ -7,3 +7,4 @@ dependencies:
   - r-ashr =2.2_54
   - r-pheatmap =1.0.12
   - r-KernSmooth =2.23-20
+  - r-tidyverse =2.0.0
