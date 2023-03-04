@@ -22,9 +22,9 @@ coldata <- read.table(snakemake@params[["samples"]], header=TRUE, row.names="sam
 coldata <- coldata[order(row.names(coldata)), , drop=F]
 condition <- snakemake@params[["model"]]
 condition <- sub('~', '', condition)
-for (i in unique(coldata$as.formula(condition)))
+for (i in unique(coldata[[condition]]))
 {
-    mean <- data.frame(mean=rowMeans(norm_counts[,c(metadata[coldata$as.formula(condition)==i,]$sample_name)]))
+    mean <- data.frame(mean=rowMeans(norm_counts[,c(metadata[coldata[condition]==i,]$sample_name)]))
     mean <- cbind(rownames(mean), mean)
     rownames(mean) <- NULL
     colnames(mean)<-c('row', paste("baseMean_", i, sep=""))
